@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#000000" />
+  <title>∞</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="overlay">
+    <div id="intro">
+      <h1>∞</h1>
+      <p>Te vivo, maluzinha.</p>
+      <button id="startBtn">Entrar no meu universo</button>
+    </div>
+  </div>
+
+  <div id="hint">arraste pra girar · pinça pra aproximar · toque no coração 💖</div>
+
+  <div id="loveLetter" class="hidden" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <div class="letter-card">
+      <button class="letter-close" id="letterClose" aria-label="Fechar">×</button>
+      <h2 id="letterTitle">Pra você, Maluzinha ∞</h2>
+      <div id="letterText"></div>
+      <div class="letter-sign">— do seu, pra sempre.</div>
+    </div>
+  </div>
+
+  <canvas id="scene"></canvas>
+
+  <audio id="bgm" loop>
+    <!-- Coloque aqui sua música favorita, patrão: assets/musica.mp3 -->
+    <source src="assets/musica.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

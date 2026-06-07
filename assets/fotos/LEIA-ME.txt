@@ -1,0 +1,13 @@
+Coloque suas fotos aqui nesta pasta, patrão!
+
+Depois, abra o arquivo main.js e procure por "SUAS FOTOS, PATRÃO!"
+lá no comecinho. Escreva o nome de cada foto na lista PHOTOS, assim:
+
+const PHOTOS = [
+  "nos.jpg",
+  "praia.jpg",
+  "aniversario.png",
+];
+
+As fotos vão aparecer flutuando como polaroids no universo.
+Formatos aceitos: .jpg, .jpeg, .png, .webp

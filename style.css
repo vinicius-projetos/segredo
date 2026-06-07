@@ -1,0 +1,268 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #000;
+  font-family: "Montserrat", sans-serif;
+  cursor: default;
+  /* Bloqueia gestos do navegador (scroll/zoom/refresh) pra interação 3D fluir no toque */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(40, 0, 0, 0.6), rgba(0, 0, 0, 0.95));
+  transition: opacity 1s ease;
+}
+
+#overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro {
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  animation: floatIn 1.2s ease;
+}
+
+#intro h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: #ff2b4e;
+  text-shadow: 0 0 25px rgba(255, 43, 78, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+#intro p {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: #ffb3c1;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+}
+
+#startBtn {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #ff0033, #ff2b6d);
+  border: none;
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255, 43, 78, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#startBtn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 45px rgba(255, 43, 78, 0.9);
+}
+
+#startBtn:active {
+  transform: scale(0.97);
+}
+
+#hint {
+  position: fixed;
+  bottom: 22px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 180, 200, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#hint.show {
+  opacity: 1;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Cartinha que abre quando toca no coração ---------- */
+#loveLetter {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(60, 0, 10, 0.55),
+    rgba(0, 0, 0, 0.85)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#loveLetter.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.letter-card {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  padding: 2.5rem 2rem 2rem;
+  background:
+    radial-gradient(ellipse at top, rgba(255, 80, 120, 0.18), transparent 70%),
+    linear-gradient(160deg, #1a0008 0%, #2a0010 100%);
+  border: 1px solid rgba(255, 80, 120, 0.35);
+  border-radius: 20px;
+  box-shadow:
+    0 0 60px rgba(255, 43, 78, 0.45),
+    0 20px 40px rgba(0, 0, 0, 0.6);
+  color: #ffe4ea;
+  animation: cardIn 0.6s cubic-bezier(0.2, 1, 0.4, 1);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.letter-card h2 {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  color: #ff8aa3;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px rgba(255, 43, 78, 0.7);
+}
+
+#letterText {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(0.95rem, 3.6vw, 1.05rem);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  text-align: justify;
+  color: #ffd6de;
+}
+
+.letter-sign {
+  margin-top: 1.5rem;
+  text-align: right;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.4rem;
+  color: #ff8aa3;
+}
+
+.letter-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #ff8aa3;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.letter-close:hover,
+.letter-close:active {
+  background: rgba(255, 80, 120, 0.18);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---------- Ajustes pra celular ---------- */
+@media (max-width: 768px) {
+  #intro {
+    padding: 1.5rem;
+  }
+
+  #intro h1 {
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
+  }
+
+  #intro p {
+    font-size: clamp(0.95rem, 4.5vw, 1.15rem);
+    padding: 0 0.5rem;
+  }
+
+  #startBtn {
+    font-size: 0.95rem;
+    padding: 1rem 2rem;
+    /* área de toque confortável */
+    min-height: 52px;
+  }
+
+  #hint {
+    bottom: max(18px, env(safe-area-inset-bottom));
+    font-size: 0.72rem;
+    padding: 0 1rem;
+  }
+}
+
+/* Telas baixas em paisagem (celular deitado) */
+@media (max-height: 480px) and (orientation: landscape) {
+  #intro h1 {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+  }
+  #intro p {
+    margin-bottom: 1rem;
+  }
+}
